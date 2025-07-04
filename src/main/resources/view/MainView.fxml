@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- FXML 문서의 기본 선언 -->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <!--
+       AnchorPane: 전체 UI의 루트 레이아웃. 자식 노드의 위치를 상하좌우 고정할 수 있음
+     -->
+   <children>
+      <VBox layoutX="-1.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+         <!--
+          VBox: 자식 노드를 수직으로 나열하는 컨테이너
+        -->
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <!--
+              상단 헤더: 보드 제목과 "새 컬럼 추가" 버튼을 수평으로 배치
+            -->
+               <children>
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="To do List Board" textAlignment="CENTER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                     <!-- 제목 텍스트. 글자 크기 40 -->
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <HBox.margin>
+                        <Insets left="30.0" top="25.0" />
+                     </HBox.margin>
+                     <!-- UI를 보기좋게 HBox margin 설정 -->
+                  </Label>
+                  <Button alignment="CENTER" mnemonicParsing="false" text="Add New Column" textAlignment="CENTER">
+                     <HBox.margin>
+                        <Insets left="25.0" top="30.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Button>
+                  <!-- 컬럼 추가 버튼. 클릭 시 컨트롤러에서 이벤트가 발생하도록 연동필요-->
+               </children>
+            </HBox>
+            <ScrollPane prefHeight="299.0" prefWidth="600.0">
+               <!--
+              컬럼들을 스크롤로 보여줄 수 있도록 ScrollPane 사용
+               -->
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+              </content>
+            </ScrollPane>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>
