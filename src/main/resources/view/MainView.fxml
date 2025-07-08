@@ -11,12 +11,12 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.kanban.controller.BoardController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <!--
        AnchorPane: 전체 UI의 루트 레이아웃. 자식 노드의 위치를 상하좌우 고정할 수 있음
      -->
    <children>
-      <VBox layoutX="-1.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
+      <VBox fx:id="rootVBox" layoutX="-1.0" layoutY="-2.0" prefHeight="400.0" prefWidth="600.0">
          <!--
           VBox: 자식 노드를 수직으로 나열하는 컨테이너
         -->
@@ -39,7 +39,7 @@
                      </HBox.margin>
                      <!-- UI를 보기좋게 HBox margin 설정 -->
                   </Label>
-                  <Button alignment="CENTER" mnemonicParsing="false" text="Add New Column" textAlignment="CENTER">
+                  <Button fx:id="addNewColumn" onAction="#onAddColumnClicked" alignment="CENTER" mnemonicParsing="false" text="Add New Column" textAlignment="CENTER">
                      <HBox.margin>
                         <Insets left="25.0" top="30.0" />
                      </HBox.margin>

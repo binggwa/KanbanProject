@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Circle?>
+
+<AnchorPane prefHeight="120.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.kanban.controller.TaskCardController"
+            style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 10; -fx-background-radius: 5;">
+
+    <VBox spacing="8.0">
+
+        <!-- Task 제목 -->
+        <Label fx:id="taskTitleLabel" text="Task Title"
+               style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+        <!-- 마감일 & 우선순위 -->
+        <HBox spacing="10.0">
+            <Label fx:id="dueDateLabel" text="Due: YYYY-MM-DD"
+                   style="-fx-font-size: 12px;" />
+
+            <!-- 우선순위 색상 점 -->
+            <HBox spacing="4.0">
+                <Circle fx:id="priorityIndicator" radius="5" fill="green"/>
+                <Label fx:id="priorityLabel" text="LOW" style="-fx-font-size: 12px;" />
+            </HBox>
+        </HBox>
+
+        <!-- 태그들 (나중에 Label 여러 개 추가할 수 있음) -->
+        <HBox fx:id="tagContainer" spacing="5.0" />
+
+        <!-- 삭제 버튼 -->
+        <Button fx:id="deleteButton" text="Delete" onAction="#onDeleteClicked"
+                style="-fx-font-size: 12px; -fx-background-color: #ff4d4d; -fx-text-fill: white;" />
+
+    </VBox>
+</AnchorPane>
