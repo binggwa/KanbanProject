@@ -55,7 +55,7 @@
               컬럼들을 스크롤로 보여줄 수 있도록 ScrollPane 사용
                -->
               <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
+                 <HBox fx:id="columnContainer" spacing="20" prefHeight="400.0" />
               </content>
             </ScrollPane>
          </children>

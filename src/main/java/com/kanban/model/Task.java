@@ -3,6 +3,7 @@ package com.kanban.model;
 import javafx.beans.property.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 public class Task {
@@ -14,9 +15,8 @@ public class Task {
     private StringProperty priority;
     private StringProperty tag;
 
-    // 기본 생성자 (JSON 직렬화용)
     public Task() {
-        this("","", LocalDate.now(), "보통","");
+        this("", "", LocalDate.now(), "MEDIUM", "");
     }
 
     public Task(String title, String description, LocalDate dueDate, String priority, String tag) {
@@ -28,7 +28,14 @@ public class Task {
         this.tag = new SimpleStringProperty(tag);
     }
 
-    // 게터와 세터
+    public Task(String title, String description, LocalDate dueDate, String priority, List<String> tags) {
+        this(title, description, dueDate, priority, String.join(",", tags));
+    }
+
+    public Task(String title, LocalDate dueDate, String priority, List<String> tags) {
+        this(title, "", dueDate, priority, String.join(",", tags));
+    }
+
     public String getId() {
         return id.get();
     }
@@ -101,14 +108,55 @@ public class Task {
         return tag;
     }
 
+    public Priority getPriorityEnum() {
+        return Priority.fromString(getPriority());
+    }
+
+    public void setPriorityEnum(Priority priorityEnum) {
+        setPriority(priorityEnum.name());
+    }
+
+    public TaskDTO toDTO() {
+        return new TaskDTO(this);
+    }
+
     @Override
     public String toString() {
-        return "Task(" +
-                "title = " + getTitle() +
-                ", dueDate = " + getDueDate() +
-                ", priority = " + getPriority() +
-                ", tag = " + getTag() +
+        return "Task{" +
+                "id=" + getId() +
+                ", title=" + getTitle() +
+                ", dueDate=" + getDueDate() +
+                ", priority=" + getPriority() +
+                ", tag=" + getTag() +
                 '}';
     }
 
+    public enum Priority {
+        LOW("낮음"), MEDIUM("보통"), HIGH("높음");
+
+        private final String displayName;
+
+        Priority(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public static Priority fromString(String str) {
+            if (str == null) return MEDIUM;
+            return switch (str.toUpperCase()) {
+                case "LOW", "낮음" -> LOW;
+                case "HIGH", "높음" -> HIGH;
+                case "MEDIUM", "보통" -> MEDIUM;
+                default -> MEDIUM;
+            };
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+
+        @Override
+        public String toString() {
+            return name(); // JSON 직렬화 시에는 영문을 사용
+        }
+    }
 }

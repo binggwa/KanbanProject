@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/21.0.7"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.kanban.controller.TaskInputFormController"
+            prefWidth="300.0" prefHeight="250.0">
+
+    <VBox spacing="10.0">
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+        </padding>
+        <!-- 제목 입력 -->
+        <TextField fx:id="titleField" promptText="Task Title" />
+
+        <!-- 마감일 선택 -->
+        <DatePicker fx:id="dueDatePicker" promptText="Due Date" />
+
+        <!-- 우선순위 선택 -->
+        <ChoiceBox fx:id="priorityChoiceBox" />
+
+        <!-- 태그 입력 -->
+        <TextField fx:id="tagsField" promptText="Tags (comma-separated)" />
+
+        <!-- 버튼 -->
+        <HBox spacing="10.0">
+            <Button fx:id="cancelButton" text="Cancel" onAction="#onCancel" />
+            <Button fx:id="addButton" text="Add Task" onAction="#onAdd" />
+        </HBox>
+    </VBox>
+</AnchorPane>

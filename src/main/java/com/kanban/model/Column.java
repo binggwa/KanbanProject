@@ -5,6 +5,8 @@ import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class Column {
@@ -13,7 +15,9 @@ public class Column {
     private StringProperty name;
     private ObservableList<Task> tasks;
 
-    // 기본 생성자 (Jackson 직렬화용)
+    /**
+     * 기본 생성자 (Jackson 직렬화용)
+     */
     public Column() {
         this(UUID.randomUUID().toString(), "New Column");
     }
@@ -28,7 +32,6 @@ public class Column {
         this.tasks = FXCollections.observableArrayList();
     }
 
-    // 게터/세터
     public String getId() {
         return id.get();
     }
@@ -61,11 +64,34 @@ public class Column {
         this.tasks = tasks;
     }
 
+    /**
+     * JSON 직렬화를 위해 List 형태로 반환
+     */
+    public List<Task> getTaskList() {
+        return new ArrayList<>(tasks);
+    }
+
+    /**
+     * JSON 역직렬화를 위해 List를 ObservableList로 변환
+     */
+    public void setTaskList(List<Task> taskList) {
+        this.tasks = FXCollections.observableArrayList(taskList);
+    }
+
     public void addTask(Task task) {
         tasks.add(task);
     }
 
     public void removeTask(Task task) {
         tasks.remove(task);
+    }
+
+    @Override
+    public String toString() {
+        return "Column{" +
+                "id='" + getId() + '\'' +
+                ", name='" + getName() + '\'' +
+                ", tasks=" + tasks +
+                '}';
     }
 }

@@ -1,20 +1,25 @@
 package com.kanban.model;
 
-import javafx.collections.ObservableList;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Board {
+
     private ObservableList<Column> columns;
 
-    // 기본 생성자
+    /**
+     * 기본 생성자
+     */
     public Board() {
         this.columns = FXCollections.observableArrayList();
     }
 
-    // 초기 컬럼을 생성하는 유틸 생성자
+    /**
+     * 초기 컬럼을 가진 기본 보드 생성
+     */
     public static Board createDefaultBoard() {
         Board board = new Board();
         board.addColumn(new Column("To Do"));
@@ -23,13 +28,26 @@ public class Board {
         return board;
     }
 
-    // JavaFX UI 연동용
     public ObservableList<Column> getColumns() {
         return columns;
     }
 
     public void setColumns(ObservableList<Column> columns) {
         this.columns = columns;
+    }
+
+    /**
+     * JSON 직렬화를 위해 List 형태로 반환
+     */
+    public List<Column> getColumnList() {
+        return new ArrayList<>(columns);
+    }
+
+    /**
+     * JSON 역직렬화를 위해 List를 ObservableList로 변환
+     */
+    public void setColumnList(List<Column> columnList) {
+        this.columns = FXCollections.observableArrayList(columnList);
     }
 
     public void addColumn(Column column) {
@@ -40,17 +58,10 @@ public class Board {
         columns.remove(column);
     }
 
-    // JSON 저장/불러오기 변환 지원
-    public List<Column> getColumnList() {
-        return new ArrayList<>(columns);
-    }
-
-    public void setColumnList(List<Column> columnList) {
-        this.columns = FXCollections.observableArrayList(columnList);
-    }
-
     @Override
     public String toString() {
-        return "Board{" + "columns = " + columns + '}';
+        return "Board{" +
+                "columns=" + columns +
+                '}';
     }
 }

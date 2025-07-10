@@ -1,0 +1,34 @@
+{
+  "columns" : [ {
+    "id" : "fb29bc54-b744-49e4-a2fb-9cb43f86b31c",
+    "name" : "To Do",
+    "tasks" : [ ],
+    "taskList" : [ ]
+  }, {
+    "id" : "00486f39-fefa-45a0-8c7f-5d70462c6233",
+    "name" : "In Progress",
+    "tasks" : [ ],
+    "taskList" : [ ]
+  }, {
+    "id" : "0c82cb1b-9941-4a8e-98cc-1d95b3af285a",
+    "name" : "Done",
+    "tasks" : [ ],
+    "taskList" : [ ]
+  } ],
+  "columnList" : [ {
+    "id" : "fb29bc54-b744-49e4-a2fb-9cb43f86b31c",
+    "name" : "To Do",
+    "tasks" : [ ],
+    "taskList" : [ ]
+  }, {
+    "id" : "00486f39-fefa-45a0-8c7f-5d70462c6233",
+    "name" : "In Progress",
+    "tasks" : [ ],
+    "taskList" : [ ]
+  }, {
+    "id" : "0c82cb1b-9941-4a8e-98cc-1d95b3af285a",
+    "name" : "Done",
+    "tasks" : [ ],
+    "taskList" : [ ]
+  } ]
+}

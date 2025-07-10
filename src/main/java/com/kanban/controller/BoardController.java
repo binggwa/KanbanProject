@@ -1,44 +1,98 @@
 package com.kanban.controller;
 
+import com.kanban.model.Board;
+import com.kanban.model.Column;
+import com.kanban.model.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
 public class BoardController {
+
     @FXML
     private Button addNewColumn;
 
     @FXML
-    private ScrollPane scrollPane;
+    private HBox columnContainer; // 컬럼들을 담을 컨테이너
 
-    @FXML
-    private VBox rootVBox;  // VBox 전체 UI
+    private Board board;
 
-    private HBox columnContainer; // 동적으로 컬럼들을 넣을 컨테이너
-
+    /**
+     * FXML 초기화
+     */
     @FXML
     public void initialize() {
-        // 초기화 시 ScrollPane 내부에 컬럼을 담을 HBox를 동적으로 생성
-        columnContainer = new HBox(20); // 컬럼 사이 간격
         columnContainer.setPrefHeight(400);
-        scrollPane.setContent(columnContainer);
     }
 
+    /**
+     * Board 설정 및 UI 초기화
+     */
+    public void setBoard(Board board) {
+        this.board = board;
+        refreshUIFromBoard();
+    }
+
+    /**
+     * 현재 Board 반환
+     */
+    public Board getBoard() {
+        return this.board;
+    }
+
+    /**
+     * Board 데이터 기반으로 UI 갱신
+     */
+    private void refreshUIFromBoard() {
+        columnContainer.getChildren().clear();
+
+        if (board == null) return;
+
+        for (Column column : board.getColumns()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/kanban/view/ColumnView.fxml"));
+                AnchorPane columnPane = loader.load();
+
+                ColumnController columnController = loader.getController();
+                columnController.setColumn(column);
+                columnController.setBoardController(this); // 필요시 BoardController 넘겨줌
+
+                // 컬럼에 포함된 Task들 UI에 추가
+                for (Task task : column.getTasks()) {
+                    FXMLLoader cardLoader = new FXMLLoader(getClass().getResource("/com/kanban/view/TaskCard.fxml"));
+                    AnchorPane taskCard = cardLoader.load();
+
+                    TaskCardController cardController = cardLoader.getController();
+                    cardController.setTask(task);
+                    cardController.setOnDeleteCallback(() -> {
+                        column.removeTask(task);
+                        refreshUIFromBoard();
+                    });
+
+                    columnController.addTaskCard(taskCard);
+                }
+
+                columnContainer.getChildren().add(columnPane);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    /**
+     * 새 컬럼 추가 버튼 클릭 시
+     */
     @FXML
     private void onAddColumnClicked() {
-        try {
-            // ColumnView.fxml 파일을 불러와 하나의 컬럼으로 추가
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/ColumnView.fxml"));
-            AnchorPane column = loader.load();  // AnchorPane 또는 VBox 등 ColumnView의 루트 타입
-            columnContainer.getChildren().add(column);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Column newColumn = new Column("New Column");
+        board.addColumn(newColumn);
+        refreshUIFromBoard();
     }
 }
