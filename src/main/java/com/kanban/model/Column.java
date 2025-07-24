@@ -1,49 +1,46 @@
 package com.kanban.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Column {
 
-    private StringProperty id;
     private StringProperty name;
     private ObservableList<Task> tasks;
 
-    /**
-     * 기본 생성자 (Jackson 직렬화용)
-     */
+    // Jackson 직렬화를 위한 기본 생성자
     public Column() {
-        this(UUID.randomUUID().toString(), "New Column");
+        this("New Column", FXCollections.observableArrayList());
     }
 
+    // 이름만 지정하는 생성자
     public Column(String name) {
-        this(UUID.randomUUID().toString(), name);
+        this(name, FXCollections.observableArrayList());
     }
 
-    public Column(String id, String name) {
-        this.id = new SimpleStringProperty(id);
+    // 내부적으로 사용하는 모든 필드 지정 생성자
+    public Column(String name, ObservableList<Task> tasks) {
         this.name = new SimpleStringProperty(name);
-        this.tasks = FXCollections.observableArrayList();
+        this.tasks = tasks;
     }
 
-    public String getId() {
-        return id.get();
+    // Jackson 역직렬화를 위한 생성자
+    @JsonCreator
+    public Column(
+            @JsonProperty("name") String name,
+            @JsonProperty("tasks") List<Task> tasks
+    ) {
+        this.name = new SimpleStringProperty(name);
+        this.tasks = FXCollections.observableArrayList(tasks);
     }
 
-    public void setId(String id) {
-        this.id.set(id);
-    }
-
-    public StringProperty idProperty() {
-        return id;
-    }
-
+    // 게터/세터
     public String getName() {
         return name.get();
     }
@@ -64,34 +61,11 @@ public class Column {
         this.tasks = tasks;
     }
 
-    /**
-     * JSON 직렬화를 위해 List 형태로 반환
-     */
-    public List<Task> getTaskList() {
-        return new ArrayList<>(tasks);
-    }
-
-    /**
-     * JSON 역직렬화를 위해 List를 ObservableList로 변환
-     */
-    public void setTaskList(List<Task> taskList) {
-        this.tasks = FXCollections.observableArrayList(taskList);
-    }
-
     public void addTask(Task task) {
         tasks.add(task);
     }
 
     public void removeTask(Task task) {
         tasks.remove(task);
-    }
-
-    @Override
-    public String toString() {
-        return "Column{" +
-                "id='" + getId() + '\'' +
-                ", name='" + getName() + '\'' +
-                ", tasks=" + tasks +
-                '}';
     }
 }

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.control.ScrollPane?>
 
-<AnchorPane prefWidth="220" prefHeight="400" xmlns="http://javafx.com/javafx/23.0.1"
+<AnchorPane prefWidth="220" prefHeight="400" xmlns="http://javafx.com/javafx/21.0.7"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.kanban.controller.ColumnController">
 
@@ -27,7 +27,8 @@
         <ScrollPane fitToWidth="true" prefHeight="300.0" vbarPolicy="AS_NEEDED">
             <content>
                 <VBox fx:id="taskListContainer" spacing="10"
-                      style="-fx-padding: 5;" />
+                      minHeight="100.0"
+                      style="-fx-background-color: transparent;" />
             </content>
         </ScrollPane>
 

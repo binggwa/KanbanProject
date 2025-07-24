@@ -1,0 +1,34 @@
+[ {
+  "name" : "To Do",
+  "tasks" : [ {
+    "id" : "cd368653-1f23-4158-a2ec-7e470e18eb8a",
+    "title" : "dtd",
+    "description" : "",
+    "dueDate" : [ 2025, 7, 24 ],
+    "priority" : "MEDIUM",
+    "tag" : "dtd",
+    "priorityEnum" : "MEDIUM"
+  }, {
+    "id" : "e8a7ea4f-ba7f-4f0c-9c43-99eb20546f8a",
+    "title" : "dtdtd",
+    "description" : "",
+    "dueDate" : [ 2025, 7, 24 ],
+    "priority" : "MEDIUM",
+    "tag" : "d,s,d",
+    "priorityEnum" : "MEDIUM"
+  } ]
+}, {
+  "name" : "In Progress",
+  "tasks" : [ {
+    "id" : "6af32899-0bdf-4220-8715-9f7d9556d1c7",
+    "title" : "sts",
+    "description" : "",
+    "dueDate" : [ 2025, 7, 24 ],
+    "priority" : "MEDIUM",
+    "tag" : "a,s,f",
+    "priorityEnum" : "MEDIUM"
+  } ]
+}, {
+  "name" : "Done",
+  "tasks" : [ ]
+} ]

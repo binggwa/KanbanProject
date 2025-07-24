@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane fx:controller="com.kanban.controller.BoardController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.kanban.controller.BoardController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21.0.7" xmlns:fx="http://javafx.com/fxml/1">
    <!--
        AnchorPane: 전체 UI의 루트 레이아웃. 자식 노드의 위치를 상하좌우 고정할 수 있음
      -->
@@ -47,7 +47,7 @@
                         <Font size="25.0" />
                      </font>
                   </Button>
-                  <!-- 컬럼 추가 버튼. 클릭 시 컨트롤러에서 이벤트가 발생하도록 연동필요-->
+                  <!-- 컬럼 추가 버튼. 클릭 시 컨트롤러에서 이벤트가 발생하도록 연동-->
                </children>
             </HBox>
             <ScrollPane prefHeight="299.0" prefWidth="600.0">

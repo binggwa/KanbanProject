@@ -2,6 +2,7 @@ package com.kanban.model;
 
 import java.time.LocalDate;
 
+// Task 객체를 JSON으로 저장하거나 불러오기 위한 Data Transfer Object (DTO)
 public class TaskDTO {
 
     public String id;
@@ -12,7 +13,8 @@ public class TaskDTO {
     public String tag;
 
     /**
-     * Jackson 직렬화를 위한 기본 생성자
+     * Jackson에서 역직렬화 시 반드시 기본 생성자가 필요
+     * JSON → TaskDTO 변환 시 내부적으로 new TaskDTO() 후 setter 또는 필드 주입을 사용
      */
     public TaskDTO() {}
 

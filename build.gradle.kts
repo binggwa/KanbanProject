@@ -39,8 +39,8 @@ dependencies {
     implementation("org.controlsfx:controlsfx:11.2.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.0")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.0") // LocalDate 지원
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.1")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.1") // LocalDate 지원
 }
 
 tasks.withType<Test> {

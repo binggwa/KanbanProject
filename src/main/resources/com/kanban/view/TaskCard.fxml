@@ -5,10 +5,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.paint.Color?>
 <?import javafx.scene.shape.Circle?>
 
-<AnchorPane prefHeight="120.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/23.0.1"
+<AnchorPane fx:id="rootPane" prefHeight="120.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21.0.7"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.kanban.controller.TaskCardController"
             style="-fx-background-color: #ffffff; -fx-border-color: #cccccc; -fx-border-radius: 5; -fx-padding: 10; -fx-background-radius: 5;">
@@ -31,7 +30,7 @@
             </HBox>
         </HBox>
 
-        <!-- 태그들 (나중에 Label 여러 개 추가할 수 있음) -->
+        <!-- 태그들 -->
         <HBox fx:id="tagContainer" spacing="5.0" />
 
         <!-- 삭제 버튼 -->

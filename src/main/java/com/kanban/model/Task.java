@@ -131,15 +131,19 @@ public class Task {
                 '}';
     }
 
+    // 열거형 Priority 정의: 작업의 우선순위를 Enum으로 선언함
     public enum Priority {
+        // 각 Enum 값에 표시용 한글 이름(String) 표기
         LOW("낮음"), MEDIUM("보통"), HIGH("높음");
 
+        // Enum 상수마다 한글로 표시될 이름을 저장하는 필드. 불변(final)이며 생성자에서 초기화
         private final String displayName;
 
         Priority(String displayName) {
             this.displayName = displayName;
         }
 
+        // 문자열 입력을 받아 Enum 값으로 변환하는 정적 유틸리티 메서드. 사용자 입력이나 JSON 파싱에 사용
         public static Priority fromString(String str) {
             if (str == null) return MEDIUM;
             return switch (str.toUpperCase()) {
